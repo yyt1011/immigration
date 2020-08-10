@@ -570,3 +570,5 @@ for (row in 1:nrow(emp)){
     emp$STATE_ABBR[row] <- 'VLAND'
   }
 }
+
+write.csv(emp, "emp_loc3.csv", row.names = FALSE)
