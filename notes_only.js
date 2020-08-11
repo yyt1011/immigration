@@ -2,7 +2,9 @@ d3.queue()
   .defer(d3.csv, "emp_loc3.csv") //data downloaded from https://www.foreignlaborcert.doleta.gov/performancedata.cfm
   .defer(d3.json, "us_zipcode.json") //https://gist.github.com/jefffriesen/6892860
   .await(ready);
-
+//set the projection for the path generator
+const projection = d3.geoAlbersUsa().scale(1100).translate([487.5, 305]);
+const path = d3.geoPath().projection(projection);
   //using topojson package to parse the topojson data to geojson data that we need to draw a map
   //topojson.feature converts
   //our RAW geo data into USEABLE geo data

@@ -1,3 +1,40 @@
-.state:hover {
-  fill: #e3ba22;
+.content {
+  margin-left: auto;
+  margin-top: 40px;
+  width: 90%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  #intro {
+    p {
+      display: inline-block;
+      margin-bottom: 15px;
+      text-align: left;
+      width: 80%;
+    }
+  }
+  #chart1 {
+    display: inline-block;
+    width: 60%;
+    #first-chart {
+      .hed {
+        font-size: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .subhed {
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    }
+  }
+  .text {
+    p {
+      display: inline-block;
+      margin-bottom: 15px;
+      text-align: left;
+      width: 80%;
+    }
+  }
 }

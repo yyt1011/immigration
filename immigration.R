@@ -2,7 +2,6 @@ library(tidyverse)
 library(dbplyr)
 df <- read.csv('PERM_Disclosure_Data_FY2020_Q2.csv')
 
-
 emp <- df%>%select(CASE_STATUS, RECEIVED_DATE, DECISION_DATE,EMPLOYER_NAME:EMPLOYER_STATE_PROVINCE, EMPLOYER_POSTAL_CODE, EMPLOYER_NUM_EMPLOYEES:NAICS_CODE,PW_SOC_CODE:PW_UNIT_OF_PAY)
 
 emp$EMPLOYER_POSTAL_CODE <- as.character(emp$EMPLOYER_POSTAL_CODE)
@@ -572,3 +571,13 @@ for (row in 1:nrow(emp)){
 }
 
 write.csv(emp, "emp_loc3.csv", row.names = FALSE)
+
+################process time######################
+emp_clean <- read.csv('emp_loc3.csv')
+View(emp_clean)
+emp_clean$RECEIVED_DATE2 <- strftime(as.Date(emp_clean$RECEIVED_DATE, format = "%m/%d/%Y"), format = "%m/%d/%Y")
+emp_clean$DECISION_DATE2 <- strftime(as.Date(emp_clean$DECISION_DATE, format = "%m/%d/%Y"), format = "%m/%d/%Y")
+emp_clean$PROCESS_TIME <- as.Date(emp_clean$DECISION_DATE2, format = "%m/%d/%Y") - as.Date(emp_clean$RECEIVED_DATE2,format = "%m/%d/%Y")
+emp_clean$PROCESS_YEAR <- emp_clean$PROCESS_TIME/365
+
+write.csv(emp_clean, "emp_loc4.csv", row.names = FALSE)
