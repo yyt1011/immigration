@@ -12,22 +12,21 @@
       width: 80%;
     }
   }
-  #chart1 {
+  #chart1,
+  #chart2 {
     display: inline-block;
     width: 60%;
-    #first-chart {
-      .hed {
-        font-size: 18px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      .subhed {
-        font-size: 16px;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-    }
+  }
+  .hed {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .subhed {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
   }
   .text {
     p {

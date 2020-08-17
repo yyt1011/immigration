@@ -11,18 +11,19 @@
   text-align: left;
   width: 80%;
 }
-.content #chart1 {
+.content #chart1,
+.content #chart2 {
   display: inline-block;
   width: 60%;
 }
-.content #chart1 #first-chart .hed {
+.content .hed {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
 }
-.content #chart1 #first-chart .subhed {
+.content .subhed {
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
 }
