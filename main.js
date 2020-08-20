@@ -1,8 +1,11 @@
+import Map from "./map.js";
+
 const width = 400;
 const height = 300;
 const margin = { top: 80, right: 100, bottom: 50, left: 80 };
 const container1 = d3.select("#chart1");
 const container2 = d3.select("#chart2");
+const container3 = d3.select("#chart3");
 
 const svg1 = container1
   .append("svg")
@@ -15,14 +18,21 @@ const svg2 = container2
   .attr("id", "second-chart")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
+const svg3 = container3
+  .append("svg")
+  .attr("id", "third-chart")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom);
 
 //import data
 // https://github.com/topojson/us-atlas
 d3.queue()
   .defer(d3.csv, "emp_loc4.csv") //data downloaded from https://www.foreignlaborcert.doleta.gov/performancedata.cfm
+  .defer(d3.json, "ca.json")
+  .defer(d3.csv, "emp_loc.csv")
   .await(ready);
 
-function ready(error, emp) {
+function ready(error, emp, zip, zip_num) {
   if (error) throw error;
 
   const groupByState = d3
@@ -263,4 +273,6 @@ function ready(error, emp) {
     .attr("y", 20)
     .attr("dy", 40)
     .attr("fill", "#999999");
+  //-----------map-------------
+  const usMap = new Map(svg3, zip, zip_num);
 }
