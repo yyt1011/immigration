@@ -2,7 +2,7 @@ import Map from "./map.js";
 
 const width = 400;
 const height = 300;
-const margin = { top: 80, right: 100, bottom: 50, left: 80 };
+const margin = { top: 100, right: 100, bottom: 50, left: 80 };
 const container1 = d3.select("#chart1");
 const container2 = d3.select("#chart2");
 const container3 = d3.select("#chart3");
@@ -21,7 +21,7 @@ const svg2 = container2
 const svg3 = container3
   .append("svg")
   .attr("id", "third-chart")
-  .attr("width", width + margin.left + margin.right)
+  .attr("width", width * 2 + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom);
 
 //import data
@@ -29,10 +29,12 @@ const svg3 = container3
 d3.queue()
   .defer(d3.csv, "emp_loc4.csv") //data downloaded from https://www.foreignlaborcert.doleta.gov/performancedata.cfm
   .defer(d3.json, "ca.json")
+  .defer(d3.json, "tx.json")
+  .defer(d3.json, "ny.json")
   .defer(d3.csv, "emp_loc.csv")
   .await(ready);
 
-function ready(error, emp, zip, zip_num) {
+function ready(error, emp, ca, tx, ny, zip_num) {
   if (error) throw error;
 
   const groupByState = d3
@@ -274,5 +276,5 @@ function ready(error, emp, zip, zip_num) {
     .attr("dy", 40)
     .attr("fill", "#999999");
   //-----------map-------------
-  const usMap = new Map(svg3, zip, zip_num);
+  const usMap = new Map(svg3, ca, tx, ny, zip_num);
 }
